@@ -19,13 +19,14 @@ constexpr char DEL = 0x7F;
 MiniShell::MiniShell(Stream *stream, int line_size)
 {
     _stream = stream;
-    _line_size = line_size;
     _line = new char[line_size];
+    _line_size = line_size;
+    _line_idx = 0;
 }
 
 MiniShell::~MiniShell()
 {
-    delete[]_line;
+    delete[] _line;
 }
 
 void MiniShell::show_help(const cmd_t *commands)
