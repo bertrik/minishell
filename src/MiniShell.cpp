@@ -2,11 +2,11 @@
 
 #include "MiniShell.h"
 
-static const char BELL = 0x07;
-static const char BS = 0x08;
-static const char LF = 0x0A;
-static const char CR = 0x0D;
-static const char DEL = 0x7F;
+constexpr char BELL = 0x07;
+constexpr char BS = 0x08;
+constexpr char LF = 0x0A;
+constexpr char CR = 0x0D;
+constexpr char DEL = 0x7F;
 
 // maximum number of arguments (including command itself)
 #define CMD_MAX_ARGS 10
