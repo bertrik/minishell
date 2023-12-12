@@ -1,3 +1,4 @@
+#include <stddef.h>
 #include <string.h>
 
 #include "MiniShell.h"
@@ -31,7 +32,7 @@ MiniShell::~MiniShell()
 
 void MiniShell::show_help(const cmd_t *commands)
 {
-    for (const cmd_t * cmd = commands; cmd->cmd != NULL; cmd++) {
+    for (const cmd_t * cmd = commands; cmd->cmd != nullptr; cmd++) {
         _stream->printf("%10s: %s\n", cmd->name, cmd->help);
     }
 }
@@ -40,24 +41,24 @@ static int cmd_split(char *input, char *args[], int maxargs)
 {
     int argc = 0;
     char *next = strtok(input, " ");
-    while ((next != NULL) && (argc < maxargs)) {
+    while ((next != nullptr) && (argc < maxargs)) {
         args[argc++] = next;
-        next = strtok(NULL, " ");
+        next = strtok(nullptr, " ");
     }
     return argc;
 }
 
 static const cmd_t *cmd_find(const cmd_t *commands, const char *name)
 {
-    const cmd_t *match = NULL;
+    const cmd_t *match = nullptr;
     int len = strlen(name);
-    for (const cmd_t * cmd = commands; cmd->cmd != NULL; cmd++) {
+    for (const cmd_t * cmd = commands; cmd->cmd != nullptr; cmd++) {
         if (strncmp(name, cmd->name, len) == 0) {
-            if (match == NULL) {
+            if (match == nullptr) {
                 match = cmd;
             } else {
                 // multiple match
-                match = NULL;
+                match = nullptr;
                 break;
             }
         }
@@ -77,7 +78,7 @@ static int cmd_process(const cmd_t *commands, char *line)
     }
     // find matching entry
     const cmd_t *cmd = cmd_find(commands, argv[0]);
-    if (cmd == NULL) {
+    if (cmd == nullptr) {
         // no command found
         return CMD_UNKNOWN;
     }
