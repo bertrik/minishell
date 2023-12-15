@@ -1,6 +1,8 @@
 #include <stddef.h>
 #include <string.h>
 
+#include <WString.h>
+
 #include "MiniShell.h"
 
 constexpr char BELL = 0x07;
@@ -100,7 +102,7 @@ void MiniShell::process(const char *prompt, const cmd_t *commands)
             case CMD_NO_CMD:
                 break;
             case CMD_UNKNOWN:
-                _stream->print("Unknown command, available commands:\n");
+                _stream->print(F("Unknown command, available commands:\n"));
                 show_help(commands);
                 break;
             default:
