@@ -110,6 +110,7 @@ void MiniShell::process(const char *prompt, const cmd_t *commands)
                 break;
             }
             _stream->print(prompt);
+            _stream->flush();
         }
     }
 }
